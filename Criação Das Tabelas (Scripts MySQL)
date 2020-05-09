@@ -1,0 +1,52 @@
+CREATE TABLE `endereco` (
+  `idendereco` int NOT NULL AUTO_INCREMENT,
+  `cidade` varchar(45) DEFAULT NULL,
+  `bairro` varchar(45) DEFAULT NULL,
+  `rua` varchar(45) DEFAULT NULL,
+  `complemento` varchar(45) DEFAULT NULL,
+  `numero` float DEFAULT NULL,
+  PRIMARY KEY (`idendereco`)
+) ENGINE=InnoDB 
+
+CREATE TABLE `usuario` (
+  `idusuario` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) DEFAULT NULL,
+  `user` varchar(45) DEFAULT NULL,
+  `password` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idusuario`)
+) ENGINE=InnoDB 
+
+CREATE TABLE `agendamento` (
+  `idagendamento` int NOT NULL AUTO_INCREMENT,
+  `observacao` varchar(45) DEFAULT NULL,
+  `data_agendamento` date DEFAULT NULL,
+  `horario_agendamento` time DEFAULT NULL,
+  `servico` int DEFAULT NULL,
+  `cliente` int DEFAULT NULL,
+  PRIMARY KEY (`idagendamento`),
+  KEY `servico_idx` (`servico`),
+  KEY `cliente_idx` (`cliente`),
+  CONSTRAINT `cliente` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`idcliente`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `servico` FOREIGN KEY (`servico`) REFERENCES `servico` (`idservico`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB 
+
+CREATE TABLE `servico` (
+  `idservico` int NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(45) NOT NULL,
+  `valor` float DEFAULT NULL,
+  PRIMARY KEY (`idservico`)
+) ENGINE=InnoDB 
+
+CREATE TABLE `cliente` (
+  `idcliente` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `cpf` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `rg` varchar(45) DEFAULT NULL,
+  `telefone` varchar(45) DEFAULT NULL,
+  `data_nascimento` date DEFAULT NULL,
+  `endereco` int DEFAULT NULL,
+  PRIMARY KEY (`idcliente`),
+  KEY `endereco_idx` (`endereco`),
+  CONSTRAINT `endereco` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`idendereco`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB 
