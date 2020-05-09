@@ -16,6 +16,13 @@ CREATE TABLE `usuario` (
   PRIMARY KEY (`idusuario`)
 ) ENGINE=InnoDB 
 
+CREATE TABLE `servico` (
+  `idservico` int NOT NULL AUTO_INCREMENT,
+  `descricao` varchar(45) NOT NULL,
+  `valor` float DEFAULT NULL,
+  PRIMARY KEY (`idservico`)
+) ENGINE=InnoDB 
+
 CREATE TABLE `agendamento` (
   `idagendamento` int NOT NULL AUTO_INCREMENT,
   `observacao` varchar(45) DEFAULT NULL,
@@ -28,13 +35,6 @@ CREATE TABLE `agendamento` (
   KEY `cliente_idx` (`cliente`),
   CONSTRAINT `cliente` FOREIGN KEY (`cliente`) REFERENCES `cliente` (`idcliente`) ON DELETE CASCADE ON UPDATE CASCADE,
   CONSTRAINT `servico` FOREIGN KEY (`servico`) REFERENCES `servico` (`idservico`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB 
-
-CREATE TABLE `servico` (
-  `idservico` int NOT NULL AUTO_INCREMENT,
-  `descricao` varchar(45) NOT NULL,
-  `valor` float DEFAULT NULL,
-  PRIMARY KEY (`idservico`)
 ) ENGINE=InnoDB 
 
 CREATE TABLE `cliente` (
