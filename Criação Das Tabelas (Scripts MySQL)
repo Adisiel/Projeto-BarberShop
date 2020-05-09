@@ -23,6 +23,20 @@ CREATE TABLE `servico` (
   PRIMARY KEY (`idservico`)
 ) ENGINE=InnoDB 
 
+CREATE TABLE `cliente` (
+  `idcliente` int NOT NULL AUTO_INCREMENT,
+  `nome` varchar(45) NOT NULL,
+  `cpf` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `rg` varchar(45) DEFAULT NULL,
+  `telefone` varchar(45) DEFAULT NULL,
+  `data_nascimento` date DEFAULT NULL,
+  `endereco` int DEFAULT NULL,
+  PRIMARY KEY (`idcliente`),
+  KEY `endereco_idx` (`endereco`),
+  CONSTRAINT `endereco` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`idendereco`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB 
+
 CREATE TABLE `agendamento` (
   `idagendamento` int NOT NULL AUTO_INCREMENT,
   `observacao` varchar(45) DEFAULT NULL,
@@ -37,16 +51,3 @@ CREATE TABLE `agendamento` (
   CONSTRAINT `servico` FOREIGN KEY (`servico`) REFERENCES `servico` (`idservico`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB 
 
-CREATE TABLE `cliente` (
-  `idcliente` int NOT NULL AUTO_INCREMENT,
-  `nome` varchar(45) NOT NULL,
-  `cpf` varchar(45) DEFAULT NULL,
-  `email` varchar(45) DEFAULT NULL,
-  `rg` varchar(45) DEFAULT NULL,
-  `telefone` varchar(45) DEFAULT NULL,
-  `data_nascimento` date DEFAULT NULL,
-  `endereco` int DEFAULT NULL,
-  PRIMARY KEY (`idcliente`),
-  KEY `endereco_idx` (`endereco`),
-  CONSTRAINT `endereco` FOREIGN KEY (`endereco`) REFERENCES `endereco` (`idendereco`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB 
