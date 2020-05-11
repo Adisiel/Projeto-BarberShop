@@ -7,10 +7,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class ConnectionFactory {
-	// Configurar para seu servidor MySQL
-	private static final String URL = "";
-	private static final String USER = "";
-	private static final String PASSWORD = "";
+	private static final String URL = "jdbc:mysql://localhost:3306/barbershop?useTimezone=true&serverTimezone=UTC&useSSL=false";
+	private static final String USER = "root";
+	private static final String PASSWORD = "Paraquedas10!";
 	
 	
 	public static Connection getConnection() {

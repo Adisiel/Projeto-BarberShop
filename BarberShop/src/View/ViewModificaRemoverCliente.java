@@ -132,7 +132,17 @@ public class ViewModificaRemoverCliente extends JFrame {
 			new String[] {
 				"ID", "Nome", "CPF", "RG", "Telefone", "Email", "Data De Nascimento", "Bairro", "Cidade", "Rua", "Complemento", "N\u00FAmero"
 			}
-		));
+		) {
+			private static final long serialVersionUID = 1L;
+			@SuppressWarnings("rawtypes")
+			Class[] columnTypes = new Class[] {
+				String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
+			};
+			@SuppressWarnings({ "unchecked", "rawtypes" })
+			public Class getColumnClass(int columnIndex) {
+				return columnTypes[columnIndex];
+			}
+		});
 		tbCliente.getColumnModel().getColumn(0).setPreferredWidth(81);
 		tbCliente.getColumnModel().getColumn(1).setPreferredWidth(81);
 		tbCliente.getColumnModel().getColumn(2).setPreferredWidth(79);
@@ -149,6 +159,7 @@ public class ViewModificaRemoverCliente extends JFrame {
 		centro.setHorizontalAlignment(SwingConstants.CENTER);
 		tbCliente.getColumnModel().getColumn(0).setCellRenderer(centro);
 		tbCliente.getColumnModel().getColumn(11).setCellRenderer(centro);
+
 		tbCliente.setBounds(36, 26, 756, 216);
 		
 		JScrollPane scrollPane = new JScrollPane(tbCliente);

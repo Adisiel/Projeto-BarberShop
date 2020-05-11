@@ -98,7 +98,7 @@ public class ViewMenuPrincipal extends JFrame {
 		) {
 			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, String.class, Float.class, String.class, String.class, String.class
+				String.class, String.class, String.class, String.class, String.class, String.class, String.class
 			};
 			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Class getColumnClass(int columnIndex) {
@@ -115,9 +115,6 @@ public class ViewMenuPrincipal extends JFrame {
 		DefaultTableCellRenderer centro = new DefaultTableCellRenderer();		
 		centro.setHorizontalAlignment(SwingConstants.CENTER);
 		tbAgendamento.getColumnModel().getColumn(0).setCellRenderer(centro);
-		tbAgendamento.getColumnModel().getColumn(3).setCellRenderer(centro);
-		tbAgendamento.getColumnModel().getColumn(4).setCellRenderer(centro);
-		tbAgendamento.getColumnModel().getColumn(5).setCellRenderer(centro);
 		tbAgendamento.setBounds(10, 11, 726, 265);
 		
 		JScrollPane scrollPane = new JScrollPane(tbAgendamento);

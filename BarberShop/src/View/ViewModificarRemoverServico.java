@@ -117,15 +117,12 @@ public class ViewModificarRemoverServico extends JFrame {
 				"ID", "Descri\u00E7\u00E3o", "Valor"
 			}
 		) {
-			/**
-			 * 
-			 */
 			private static final long serialVersionUID = 1L;
 			@SuppressWarnings("rawtypes")
 			Class[] columnTypes = new Class[] {
-				Integer.class, String.class, Float.class
+				String.class, String.class, String.class
 			};
-			@SuppressWarnings({ "unchecked", "rawtypes" })
+			@SuppressWarnings({ "rawtypes", "unchecked" })
 			public Class getColumnClass(int columnIndex) {
 				return columnTypes[columnIndex];
 			}
@@ -141,7 +138,6 @@ public class ViewModificarRemoverServico extends JFrame {
 		centro.setHorizontalAlignment(SwingConstants.CENTER);
 		tbServicos.getColumnModel().getColumn(0).setCellRenderer(centro);
 		tbServicos.getColumnModel().getColumn(2).setCellRenderer(centro);
-		
 		JScrollPane scrollPane = new JScrollPane(tbServicos);
 		scrollPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		scrollPane.setBounds(78, 34, 528, 259);
