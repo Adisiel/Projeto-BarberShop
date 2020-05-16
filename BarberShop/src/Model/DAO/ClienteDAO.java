@@ -1,4 +1,4 @@
-package Model.DAO;
+package model.DAO;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -11,8 +11,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import Connection.ConnectionFactory;
-import Model.Bean.Cliente;
+import connection.ConnectionFactory;
+import model.bean.Cliente;
 
 public class ClienteDAO {
 
@@ -55,9 +55,8 @@ public class ClienteDAO {
 				Cliente c = new Cliente();
 				c.setId(rs.getInt("idcliente"));
 				c.setCpf(rs.getString("cpf"));
-				Date d = rs.getDate("data_nascimento");
-				LocalDate data = d.toLocalDate();
-				c.setData_nascimento(data);
+				LocalDate date = rs.getDate("data_nascimento").toLocalDate();
+				c.setData_nascimento(date);
 				c.setEmail(rs.getString("email"));
 				c.setNome(rs.getString("nome"));
 				c.setTelefone(rs.getString("telefone"));
@@ -66,7 +65,7 @@ public class ClienteDAO {
 				clientes.add(c);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na seleção de todos os clientes no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement, rs);
 		}
@@ -97,7 +96,7 @@ public class ClienteDAO {
 				break;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na seleção deste cliente no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement, rs);
 		}
@@ -130,7 +129,7 @@ public class ClienteDAO {
 				c.setEndereco(endDAO.selectByID(c.getId()));
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na remoção deste cliente no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement, rs);
 		}
@@ -146,7 +145,7 @@ public class ClienteDAO {
 			statement.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Deletado com sucesso");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na seleção deste cliente no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement);
 		}	
@@ -166,7 +165,7 @@ public class ClienteDAO {
 			eDAO.updateByID(eDAO.selectByID(idCliente).getId(), cidade, bairro, rua, complemento, numero);
 			JOptionPane.showMessageDialog(null, "Modificado com sucesso");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na atualização deste cliente no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement);
 		}		

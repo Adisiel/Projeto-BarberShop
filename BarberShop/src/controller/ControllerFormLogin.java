@@ -1,8 +1,8 @@
-package Controllers;
+package controller;
 
-import Model.Bean.Usuario;
-import Model.DAO.UsuarioDAO;
-import View.ViewLogin;
+import model.DAO.UsuarioDAO;
+import model.bean.Usuario;
+import view.ViewLogin;
 
 public class ControllerFormLogin {
 	ViewLogin view;

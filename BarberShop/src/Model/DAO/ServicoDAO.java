@@ -1,4 +1,4 @@
-package Model.DAO;
+package model.DAO;
 
 
 import java.sql.Connection;
@@ -10,9 +10,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-
-import Connection.ConnectionFactory;
-import Model.Bean.Servico;
+import connection.ConnectionFactory;
+import model.bean.Servico;
 
 
 public class ServicoDAO {
@@ -52,7 +51,7 @@ public class ServicoDAO {
 				servicos.add(s);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na seleção de todos os serviços no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement, rs);
 		}
@@ -75,7 +74,7 @@ public class ServicoDAO {
 				break;
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na seleção deste serviço no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement, rs);
 		}
@@ -100,7 +99,7 @@ public class ServicoDAO {
 				s.setValor(rs.getInt("valor"));
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na seleção deste serviço no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement, rs);
 		}
@@ -116,7 +115,7 @@ public class ServicoDAO {
 			statement.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Deletado com sucesso");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na remoção deste serviço no banco de dados");;
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement);
 		}	
@@ -132,7 +131,7 @@ public class ServicoDAO {
 			statement.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Modificado com sucesso");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na atualização deste serviço no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement);
 		}		

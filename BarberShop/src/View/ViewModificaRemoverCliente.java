@@ -1,30 +1,28 @@
-package View;
+package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JScrollPane;
-import javax.swing.JButton;
 import java.awt.Color;
-import java.awt.Font;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-
-import Controllers.ControllerFormModificaRemoveCliente;
-
 import java.awt.Cursor;
-import javax.swing.ListSelectionModel;
-import javax.swing.SwingConstants;
-
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+
+import controller.ControllerFormModificaRemoveCliente;
+import model.table.ClienteTM;
 
 public class ViewModificaRemoverCliente extends JFrame {
 
@@ -36,6 +34,7 @@ public class ViewModificaRemoverCliente extends JFrame {
 	private JTable tbCliente;
 	private int linhaClienteSelecionada;
 	private ControllerFormModificaRemoveCliente controller;
+	private ClienteTM modelo;
 
 	/**
 	 * Launch the application.
@@ -126,23 +125,8 @@ public class ViewModificaRemoverCliente extends JFrame {
 		tbCliente.setShowGrid(false);
 		tbCliente.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		tbCliente.setFillsViewportHeight(true);
-		tbCliente.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Nome", "CPF", "RG", "Telefone", "Email", "Data De Nascimento", "Bairro", "Cidade", "Rua", "Complemento", "N\u00FAmero"
-			}
-		) {
-			private static final long serialVersionUID = 1L;
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class, String.class
-			};
-			@SuppressWarnings({ "unchecked", "rawtypes" })
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		modelo = new ClienteTM();
+		tbCliente.setModel(modelo);
 		tbCliente.getColumnModel().getColumn(0).setPreferredWidth(81);
 		tbCliente.getColumnModel().getColumn(1).setPreferredWidth(81);
 		tbCliente.getColumnModel().getColumn(2).setPreferredWidth(79);
@@ -154,12 +138,12 @@ public class ViewModificaRemoverCliente extends JFrame {
 		tbCliente.getColumnModel().getColumn(8).setPreferredWidth(81);
 		tbCliente.getColumnModel().getColumn(9).setPreferredWidth(84);
 		tbCliente.getColumnModel().getColumn(10).setPreferredWidth(88);
-		tbCliente.getColumnModel().getColumn(11).setPreferredWidth(77);
+		tbCliente.setAutoCreateColumnsFromModel(false);
 		DefaultTableCellRenderer centro = new DefaultTableCellRenderer();		
 		centro.setHorizontalAlignment(SwingConstants.CENTER);
 		tbCliente.getColumnModel().getColumn(0).setCellRenderer(centro);
+		tbCliente.getColumnModel().getColumn(6).setCellRenderer(centro);
 		tbCliente.getColumnModel().getColumn(11).setCellRenderer(centro);
-
 		tbCliente.setBounds(36, 26, 756, 216);
 		
 		JScrollPane scrollPane = new JScrollPane(tbCliente);

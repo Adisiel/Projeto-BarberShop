@@ -1,4 +1,4 @@
-package View;
+package view;
 
 
 import java.awt.EventQueue;
@@ -7,7 +7,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controllers.ControllerFormCadastroServico;
+import controller.ControllerFormCadastroServico;
 
 import javax.swing.JLabel;
 import javax.swing.ImageIcon;
@@ -62,7 +62,6 @@ public class ViewServico extends JFrame {
 		btCadastrarServico.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				controller.cadastrarServico();
-				dispose();
 			}
 		});
 		btCadastrarServico.setHorizontalTextPosition(SwingConstants.CENTER);

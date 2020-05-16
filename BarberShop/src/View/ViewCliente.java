@@ -1,30 +1,28 @@
-package View;
+package view;
 
+import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.text.ParseException;
 
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFormattedTextField;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
-import Controllers.ControllerFormCadastroCliente;
-import Model.Bean.Endereco;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-
-import java.awt.Font;
-import javax.swing.ImageIcon;
-import java.awt.Color;
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.SwingConstants;
-import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.awt.event.ActionEvent;
-import java.awt.Cursor;
-import javax.swing.JFormattedTextField;
+import controller.ControllerFormCadastroCliente;
+import model.bean.Endereco;
 
 public class ViewCliente extends JFrame {
 
@@ -111,7 +109,6 @@ public class ViewCliente extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 				endereco = viewEndereco.getEndereco();
 				controller.cadastrarCliente(endereco);
-				dispose(); 
 			}
 		});
 		
@@ -131,7 +128,7 @@ public class ViewCliente extends JFrame {
 		txtTelefone.setForeground(new Color(178, 34, 34));
 		txtTelefone.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		txtTelefone.setBorder(new EmptyBorder(0, 5, 0, 0));
-		txtTelefone.setBounds(123, 217, 226, 26);
+		txtTelefone.setBounds(123, 217, 112, 26);
 		try {
 			txtTelefone.setFormatterFactory(new DefaultFormatterFactory(new MaskFormatter("(##)#####-####")));
 		} catch (ParseException e) {

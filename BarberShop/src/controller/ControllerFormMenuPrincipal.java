@@ -1,14 +1,14 @@
-package Controllers;
+package controller;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
 
-import Model.Bean.Agendamento;
-import Model.DAO.AgendamentoDAO;
-import View.ViewMenuPrincipal;
+import model.DAO.AgendamentoDAO;
+import model.table.AgendamentoTM;
+import view.ViewMenuPrincipal;
 
 public class ControllerFormMenuPrincipal {
 	
@@ -19,24 +19,9 @@ public class ControllerFormMenuPrincipal {
 	}
 	
 	public void preencherJtable () {
-		DefaultTableModel modelo = (DefaultTableModel) view.getTbAgendamento().getModel();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		DateTimeFormatter formatterHorario = DateTimeFormatter.ofPattern("H:mm");
-		modelo.setNumRows(0);
 		AgendamentoDAO aDAO = new AgendamentoDAO();
-		for(Agendamento a: aDAO.selectAll()) {
-			String date = a.getDataAgendamento().format(formatter);
-			String time = a.getHorarioAgendamento().format(formatterHorario);
-			modelo.addRow(new Object[] {
-					a.getId(),
-					a.getCliente().getNome(),
-					a.getServico().getDescricao(),
-					a.getServico().getValor(),
-					date,
-					time,
-					a.getObservacao()			
-			});
-		}
+		AbstractTableModel modelo = new AgendamentoTM(aDAO.selectAll());
+		view.getTbAgendamento().setModel(modelo);
 	}
 
 	public void removerTabelaAgendamento(int idAgendamento) {
@@ -52,4 +37,5 @@ public class ControllerFormMenuPrincipal {
 		LocalTime time = LocalTime.parse(horario, formatterHorario);
 		aDAO.updateByID(idAgendamento, observacao, date, time);
 	}
+	
 }

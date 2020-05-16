@@ -1,28 +1,27 @@
-package View;
+package view;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.EventQueue;
 import java.awt.Font;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-
-import Controllers.ControllerFormModificaRemoveServico;
-
-import javax.swing.JScrollPane;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.Cursor;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+
+import controller.ControllerFormModificaRemoveServico;
+import model.table.ServicoTM;
 
 public class ViewModificarRemoverServico extends JFrame {
 
@@ -34,6 +33,7 @@ public class ViewModificarRemoverServico extends JFrame {
 	private JTable tbServicos;
 	private int linhaServicoSelecionada; 
 	private ControllerFormModificaRemoveServico controller;
+	private ServicoTM modelo;
 	/**
 	 * Launch the application.
 	 */
@@ -110,23 +110,8 @@ public class ViewModificarRemoverServico extends JFrame {
 			}
 		});
 		tbServicos.setBorder(new EmptyBorder(0, 0, 0, 0));
-		tbServicos.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Descri\u00E7\u00E3o", "Valor"
-			}
-		) {
-			private static final long serialVersionUID = 1L;
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class
-			};
-			@SuppressWarnings({ "rawtypes", "unchecked" })
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		modelo = new ServicoTM();
+		tbServicos.setModel(modelo);
 		tbServicos.getColumnModel().getColumn(0).setPreferredWidth(90);
 		tbServicos.getColumnModel().getColumn(1).setPreferredWidth(225);
 		tbServicos.getColumnModel().getColumn(2).setPreferredWidth(112);
@@ -134,6 +119,7 @@ public class ViewModificarRemoverServico extends JFrame {
 		tbServicos.setFillsViewportHeight(true);
 		tbServicos.setShowGrid(false);
 		tbServicos.setBounds(78, 84, 528, 210);
+		tbServicos.setAutoCreateColumnsFromModel(false);
 		DefaultTableCellRenderer centro = new DefaultTableCellRenderer();		
 		centro.setHorizontalAlignment(SwingConstants.CENTER);
 		tbServicos.getColumnModel().getColumn(0).setCellRenderer(centro);

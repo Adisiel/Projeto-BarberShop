@@ -1,4 +1,4 @@
-package View;
+package view;
 
 import java.awt.EventQueue;
 
@@ -6,7 +6,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
-import Controllers.ControllerFormLogin;
+import controller.ControllerFormLogin;
 
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -111,6 +111,7 @@ public class ViewLogin extends JFrame {
 				boolean autenticado = controller.autenticacao();
 				if (autenticado) {
 					new ViewMenuPrincipal().setVisible(true);
+					dispose();
 				} else {
 					JOptionPane.showMessageDialog(null, "Senha ou Usuário errado!");
 				}

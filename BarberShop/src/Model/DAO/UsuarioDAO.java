@@ -1,4 +1,4 @@
-package Model.DAO;
+package model.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -6,8 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import Connection.ConnectionFactory;
-import Model.Bean.Usuario;
+import javax.swing.JOptionPane;
+
+import connection.ConnectionFactory;
+import model.bean.Usuario;
 
 public class UsuarioDAO {
 
@@ -29,7 +31,7 @@ public class UsuarioDAO {
 				usuarios.add(u);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na seleção de todos os usuários no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement, rs);
 		}

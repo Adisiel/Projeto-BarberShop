@@ -1,13 +1,13 @@
-package Controllers;
+package controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
 
-import Model.Bean.Cliente;
-import Model.DAO.ClienteDAO;
-import View.ViewModificaRemoverCliente;
+import model.DAO.ClienteDAO;
+import model.table.ClienteTM;
+import view.ViewModificaRemoverCliente;
 
 public class ControllerFormModificaRemoveCliente {
 	
@@ -18,28 +18,9 @@ public class ControllerFormModificaRemoveCliente {
 	}
 	
 	public void preencherJtable () {
-		DefaultTableModel modelo = (DefaultTableModel) view.getTbCliente().getModel();
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-		modelo.setNumRows(0);
 		ClienteDAO cDAO = new ClienteDAO();
-		for(Cliente c: cDAO.selectAll()) {
-			String date = c.getData_nascimento().format(formatter);
-			modelo.addRow(new Object[] {
-					c.getId(),
-					c.getNome(),
-					c.getCpf(),
-					c.getRg(),
-					c.getTelefone(),
-					c.getEmail(),
-					date,
-					c.getEndereco().getCidade(),
-					c.getEndereco().getBairro(),
-					c.getEndereco().getRua(),
-					c.getEndereco().getComplemento(),
-					c.getEndereco().getNumero()
-			});
-		}
-		
+		AbstractTableModel modelo = new ClienteTM(cDAO.selectAll());
+		view.getTbCliente().setModel(modelo);
 	}
 
 	public void removerTabelaCliente(int idCliente) {

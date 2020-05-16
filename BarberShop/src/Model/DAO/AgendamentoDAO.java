@@ -1,4 +1,4 @@
-package Model.DAO;
+package model.DAO;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -13,8 +13,8 @@ import java.util.List;
 
 import javax.swing.JOptionPane;
 
-import Connection.ConnectionFactory;
-import Model.Bean.Agendamento;
+import connection.ConnectionFactory;
+import model.bean.Agendamento;
 
 public class AgendamentoDAO {
 
@@ -35,7 +35,7 @@ public class AgendamentoDAO {
 
 			JOptionPane.showMessageDialog(null, "Salvo com sucesso");
 		} catch (SQLException ex) {
-			JOptionPane.showMessageDialog(null, "Erro na criação e gravação deste endereço no banco de dados");
+			JOptionPane.showMessageDialog(null, "Erro na criação e gravação deste agendamento no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement);
 		}
@@ -67,7 +67,7 @@ public class AgendamentoDAO {
 				agendamentos.add(a);
 			}
 		} catch (Exception e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na seleção de todos os agendamentos no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement, rs);
 		}
@@ -83,7 +83,7 @@ public class AgendamentoDAO {
 			statement.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Deletado com sucesso");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na remoção deste agendamento no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement);
 		}	
@@ -101,7 +101,7 @@ public class AgendamentoDAO {
 			statement.executeUpdate();
 			JOptionPane.showMessageDialog(null, "Modificado com sucesso");
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na atualização deste agendamento no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement);
 		}	

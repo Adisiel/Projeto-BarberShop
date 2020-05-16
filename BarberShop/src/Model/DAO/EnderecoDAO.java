@@ -1,4 +1,4 @@
-package Model.DAO;
+package model.DAO;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -7,8 +7,8 @@ import java.sql.SQLException;
 
 import javax.swing.JOptionPane;
 
-import Connection.ConnectionFactory;
-import Model.Bean.Endereco;
+import connection.ConnectionFactory;
+import model.bean.Endereco;
 
 public class EnderecoDAO {
 
@@ -60,7 +60,7 @@ public class EnderecoDAO {
 				e.setNumero(rs.getInt("numero"));
 			}
 		} catch (Exception ex) {
-			ex.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na seleção deste endereço no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement, rs);
 		}
@@ -71,18 +71,15 @@ public class EnderecoDAO {
 		Connection conexao = ConnectionFactory.getConnection();
 		PreparedStatement statement = null;
 		String sql = "UPDATE barbershop.endereco SET cidade = '" + cidade + "', bairro = '" + bairro + "', rua = '" + rua +
-		"', complemento = '" + complemento + "', numero = " + numero + " WHERE idendereco = " + idEndereco + ";";
+				"', complemento = '" + complemento + "', numero = " + numero + " WHERE idendereco = " + idEndereco + ";";
 		try {
 			statement = conexao.prepareStatement(sql);
 			statement.executeUpdate();
 		} catch (SQLException e) {
-			e.printStackTrace();
+			JOptionPane.showMessageDialog(null, "Erro na atualização deste endereço no banco de dados");
 		} finally {
 			ConnectionFactory.closeConnection(conexao, statement);
-		}		
-		
+		}			
 	}
-
-
 
 }

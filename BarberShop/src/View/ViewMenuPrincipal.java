@@ -1,32 +1,28 @@
-package View;
+package view;
 
 import java.awt.Color;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import java.awt.Font;
-
-
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
 import java.awt.Cursor;
-
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-
-import Controllers.ControllerFormMenuPrincipal;
-import javax.swing.JScrollPane;
-import javax.swing.ListSelectionModel;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+
+import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.table.DefaultTableCellRenderer;
+
+import controller.ControllerFormMenuPrincipal;
+import model.table.AgendamentoTM;
 
 public class ViewMenuPrincipal extends JFrame {
 
@@ -37,7 +33,8 @@ public class ViewMenuPrincipal extends JFrame {
 	private JPanel contentPane;
 	private JTable tbAgendamento;
 	private ControllerFormMenuPrincipal controller;
-	private int linhaAgendamentoSelecionada; 
+	private int linhaAgendamentoSelecionada;
+	private AgendamentoTM modelo; 
 	
 	/**
 	 * Launch the application.
@@ -58,7 +55,7 @@ public class ViewMenuPrincipal extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("serial")
+	
 	public ViewMenuPrincipal() {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		this.linhaAgendamentoSelecionada = 0;
@@ -89,22 +86,8 @@ public class ViewMenuPrincipal extends JFrame {
 		tbAgendamento.setBorder(new EmptyBorder(0, 0, 0, 0));
 		tbAgendamento.setRowMargin(0);
 		tbAgendamento.setFont(new Font("Segoe UI", Font.PLAIN, 14));
-		tbAgendamento.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"ID", "Cliente", "Servi\u00E7o", "Valor", "Data Marcada", "Hor\u00E1rio Marcado", "Observa\u00E7\u00E3o"
-			}
-		) {
-			@SuppressWarnings("rawtypes")
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, String.class, String.class, String.class
-			};
-			@SuppressWarnings({ "rawtypes", "unchecked" })
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		modelo = new AgendamentoTM();
+		tbAgendamento.setModel(modelo);
 		tbAgendamento.getColumnModel().getColumn(0).setPreferredWidth(56);
 		tbAgendamento.getColumnModel().getColumn(1).setPreferredWidth(101);
 		tbAgendamento.getColumnModel().getColumn(2).setPreferredWidth(107);
@@ -112,9 +95,13 @@ public class ViewMenuPrincipal extends JFrame {
 		tbAgendamento.getColumnModel().getColumn(4).setPreferredWidth(115);
 		tbAgendamento.getColumnModel().getColumn(5).setPreferredWidth(120);
 		tbAgendamento.getColumnModel().getColumn(6).setPreferredWidth(106);
+		tbAgendamento.setAutoCreateColumnsFromModel(false);
 		DefaultTableCellRenderer centro = new DefaultTableCellRenderer();		
 		centro.setHorizontalAlignment(SwingConstants.CENTER);
 		tbAgendamento.getColumnModel().getColumn(0).setCellRenderer(centro);
+		tbAgendamento.getColumnModel().getColumn(3).setCellRenderer(centro);
+		tbAgendamento.getColumnModel().getColumn(4).setCellRenderer(centro);
+		tbAgendamento.getColumnModel().getColumn(5).setCellRenderer(centro);
 		tbAgendamento.setBounds(10, 11, 726, 265);
 		
 		JScrollPane scrollPane = new JScrollPane(tbAgendamento);

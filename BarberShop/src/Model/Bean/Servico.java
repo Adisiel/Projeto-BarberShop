@@ -1,4 +1,4 @@
-package Model.Bean;
+package model.bean;
 
 public class Servico {
 	

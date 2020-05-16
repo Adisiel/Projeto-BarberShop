@@ -1,11 +1,10 @@
-package Controllers;
+package controller;
 
-import javax.swing.table.DefaultTableModel;
+import javax.swing.table.AbstractTableModel;
 
-import Model.Bean.Servico;
-
-import Model.DAO.ServicoDAO;
-import View.ViewModificarRemoverServico;
+import model.DAO.ServicoDAO;
+import model.table.ServicoTM;
+import view.ViewModificarRemoverServico;
 
 public class ControllerFormModificaRemoveServico {
 	private ViewModificarRemoverServico view;
@@ -20,17 +19,9 @@ public class ControllerFormModificaRemoveServico {
 	}
 
 	public void preencherJtable() {
-		DefaultTableModel modelo = (DefaultTableModel) view.getTbServicos().getModel();
-		modelo.setNumRows(0);
 		ServicoDAO sDAO = new ServicoDAO();
-		for(Servico s: sDAO.selectAll()) {
-			modelo.addRow(new Object[] {
-					s.getId(),
-					s.getDescricao(),
-					s.getValor()
-			});
-		}
-		
+		AbstractTableModel modelo = new ServicoTM(sDAO.selectAll());
+		view.getTbServicos().setModel(modelo);
 	}
 
 	public void removeTabelaServico(int idservico) {

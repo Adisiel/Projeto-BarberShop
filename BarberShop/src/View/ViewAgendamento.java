@@ -1,37 +1,35 @@
-package View;
+package view;
 
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import Controllers.ControllerFormCadastroAgendamento;
-import Model.Bean.Cliente;
-import Model.Bean.Servico;
-
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.ImageIcon;
-import javax.swing.JComboBox;
-import java.awt.Font;
 import java.awt.Color;
-import javax.swing.JTextField;
+import java.awt.Cursor;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.ParseException;
-import java.awt.event.ItemEvent;
-import javax.swing.SwingConstants;
+
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFormattedTextField;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
 import javax.swing.border.LineBorder;
 import javax.swing.text.DefaultFormatterFactory;
 import javax.swing.text.MaskFormatter;
 
-import java.awt.Cursor;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextArea;
-import javax.swing.JFormattedTextField;
+import controller.ControllerFormCadastroAgendamento;
+import model.bean.Cliente;
+import model.bean.Servico;
 
 public class ViewAgendamento extends JFrame {
 
@@ -83,7 +81,6 @@ public class ViewAgendamento extends JFrame {
 				Servico servico = controller.buscaServicoPorNome(cbServico.getSelectedItem().toString());
 				Cliente cliente = controller.buscaClientePorNome(cbCliente.getSelectedItem().toString());			
 				controller.cadastrarAgendamento(servico, cliente);			
-				dispose();
 			}
 		});
 		btCadastrarAgendamento.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
